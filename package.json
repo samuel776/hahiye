@@ -1,8 +1,13 @@
 {
-  "name": "product",
+  "name": "hahiye-api",
   "version": "1.0.0",
+  "description": "Hahiye API",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/transaxrw/hahiye-backend"
+  },
   "main": "server.js",
-  "author": "Transax Rwanda",
+  "author": "Transax",
   "license": "MIT",
   "scripts": {
     "dev": "nodemon --exec babel-node ./src/app.js"
