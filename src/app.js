@@ -58,7 +58,7 @@ if (config.mongooseDebug) {
 app.use(routes);
 
 app.get('*', (req, res) => res.status(200).send({
-  message: 'Welcome to the Hahiye API ----7777777---',
+  message: 'Welcome to the Hahiye API ----88888---',
 }));
 
 const port = config.port || 4000;
