@@ -49,9 +49,9 @@ mongoose.connection.on("error", error => {
 
 // print mongoose logs in dev env
 if (config.mongooseDebug) {
-  mongoose.set("debug", (collectionName, method, query, doc) => {
-    debug(`${collectionName}.${method}`, util.inspect(query, false, 20), doc);
-  });
+  mongoose.set('debug', true, function (coll, method, query, doc) {
+    log.debug('query executed:', coll, method, query, doc);
+});
 }
 
 
