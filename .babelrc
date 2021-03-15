@@ -1,6 +1,3 @@
 {
-  "presets": [
-    ["env", { "exclude": ["transform-es2015-classes"] }]
-  ],
-  "plugins": ["transform-class-properties", "transform-object-rest-spread"]
+  "presets": ["@babel/preset-env"]
 }

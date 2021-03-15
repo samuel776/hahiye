@@ -17,22 +17,17 @@ class UserServices {
     }
   }
 
-  async findAll() {
-    const users = await User.find();
-    return users.map((user) => this.formatUser(user));
-  }
-
   async findOriginalOne(params) {
     const found = await User.findOne(params);
     if (!found) throw new Error("User not found!");
     return found;
   }
 
-  async findOne(params, select) {
+  async findOne(params) {
     const found = await User.findOne(params);
     if (!found) throw new Error("User not found!");
     const { _doc: user } = found;
-    return this.formatUser(user, select);
+    return this.formatUser(user, "password");
   }
 
   async create(params) {
@@ -47,11 +42,6 @@ class UserServices {
       new: true,
       runValidators: true,
     });
-    return this.formatUser(user);
-  }
-
-  async delete(params) {
-    const user = await User.findOneAndDelete(params);
     return this.formatUser(user);
   }
 }

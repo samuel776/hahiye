@@ -1,5 +1,5 @@
 import "colors";
-import "babel-polyfill";
+import "@babel/polyfill";
 import cors from "cors";
 import dotenv from "dotenv";
 import logger from "morgan";
@@ -63,3 +63,4 @@ const port = config.port || 4000;
 app.listen(port, () => {
   console.log(`Server running at ${port}`);
 });
+export default app;

@@ -1,0 +1,143 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Documentation for Hahiye API",
+    "version": "1.0.0",
+    "title": "Hahiye Backend"
+  },
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "user",
+      "description": "Operations related to authentication"
+    }
+  ],
+  "schemes": ["http", "https"],
+  "paths": {
+    "/users/login": {
+      "post": {
+        "tags": ["users"],
+        "summary": "Login a user with email & password",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Login"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login successfully",
+            "schema": {
+              "$ref": "#/definitions/LoginResponse"
+            }
+          },
+          "401": {
+            "description": "Wrong credentials (password)"
+          }
+        }
+      }
+    },
+    "/users/signup": {
+      "post": {
+        "tags": ["users"],
+        "summary": "Signup user",
+        "description": "Provide proper information to create account",
+        "operationId": "registerUser",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Signup"
+            },
+            "required": true
+          }
+        ],
+
+        "responses": {
+          "201": {
+            "description": "User created successfully ",
+            "schema": {
+              "$ref": "#/definitions/LoginResponse"
+            }
+          },
+          "400": {
+            "description": "Operation failed"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Login": {
+      "type": "object",
+      "required": ["user_email", "user_password"],
+      "properties": {
+        "user_email": {
+          "type": "string"
+        },
+        "user_password": {
+          "type": "string"
+        }
+      },
+      "responses": {
+        "201": {
+          "description": "User created successfully ",
+          "schema": {
+            "$ref": "#/definitions/LoginResponse"
+          }
+        },
+        "400": {
+          "description": "Operation failed"
+        }
+      }
+    },
+    "Signup": {
+      "type": "object",
+      "required": ["user_email", "user_password", "user_name"],
+      "properties": {
+        "user_name": {
+          "type": "string"
+        },
+        "user_email": {
+          "type": "string"
+        },
+        "user_password": {
+          "type": "string"
+        },
+        "confirm_password": {
+          "type": "string"
+        }
+      }
+    },
+    "LoginResponse": {
+      "type": "object",
+      "required": ["success", "status"],
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "status": {
+          "type": "integer"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "LoginResponse"
+      }
+    }
+  }
+}
