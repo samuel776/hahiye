@@ -74,6 +74,66 @@
           }
         }
       }
+    },
+
+    "/users/forgotPassword": {
+      "post": {
+        "tags": ["users"],
+        "summary": "forgetting and resetting password",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/forgotPassword"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Email has been sent, kindly follow the instructions to reset your password",
+            "schema": {
+              "$ref": "#/definitions/ForgotPassword"
+            }
+          },
+          "500": {
+            "description": "something went wrong"
+          }
+        }
+      }
+    },
+
+    "/users/resetPassword/:resetLink": {
+      "post": {
+        "tags": ["users"],
+        "summary": "forgetting and resetting password",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/resetPassword"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "your password has been changed successfully",
+            "schema": {
+              "$ref": "#/definitions/resetPassword"
+            }
+          },
+          "500": {
+            "description": "something went wrong while updating user"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -100,6 +160,41 @@
         }
       }
     },
+    "forgotPassword": {
+      "type": "object",
+      "required": "user_email",
+      "properties": {
+        "user_email": {
+          "type": "string"
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Email has been sent, kindly follow the instructions to reset your password "
+        },
+        "500": {
+          "description": "something went wrong "
+        }
+      }
+    },
+    "resetPassword": {
+      "type": "object",
+      "required": "newPass",
+      "properties": {
+        "newPass": {
+          "type": "string"
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "your password has been changed successfully "
+        },
+        "500": {
+          "description": "something went wrong while updating use"
+        }
+      }
+    },
+
     "Signup": {
       "type": "object",
       "required": ["user_email", "user_password", "user_name"],

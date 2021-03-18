@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
-import "dotenv/config";
-import { sign, verify } from "jsonwebtoken";
-import { compare, genSalt, hash } from "bcryptjs";
+import 'dotenv/config';
+import { sign, verify } from 'jsonwebtoken';
+import { compare, genSalt, hash } from 'bcryptjs';
 
 const { JWT_SECRET } = process.env;
 
@@ -17,7 +17,7 @@ class AuthHelpers {
     return isValid;
   }
 
-  signToken(data, secret = JWT_SECRET, duration = "2h") {
+  signToken(data, secret = JWT_SECRET, duration = '2h') {
     const token = sign(data, secret, { expiresIn: duration });
     return token;
   }
